@@ -9,18 +9,38 @@ constructor(props) {
     todos: [
       {description: 'Walk the cat', isCompleted: true },
       { description: 'Throw the dishes away', isCompleted: false },
-      { description: 'Buy new dishes', isCompleted: false }
+      { description: 'Buy new dishes', isCompleted: false },
+      { description: 'Buy new dishes again', isCompleted: false }
     ]
   };
+  this.deleteTodo = this.deleteTodo.bind(this)
+}
+
+deleteTodo(todoIndex) {
+  const todos = this.state.todos.filter((todo, index) => index !== todoIndex);
+
+  this.setState({
+    todos,
+  })
 }
 
 render(){
   return (
     <div className="App">
      <ul>
-     { this.state.todos.map( (todo, index) =>
-             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } />
-              )}
+     {
+       this.state.todos.map((todo, index) => {
+         return (
+           <ToDo
+             key={ index }
+             description={ todo.description }
+             isCompleted={ todo.isCompleted }
+             deleteTodo={this.deleteTodo}
+             index={index}
+           />
+         )
+       })
+     }
      </ul>
     </div>
   );

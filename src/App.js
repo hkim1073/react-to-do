@@ -9,10 +9,25 @@ constructor(props) {
     todos: [
       {description: 'Walk the cat', isCompleted: true },
       { description: 'Throw the dishes away', isCompleted: false },
+<<<<<<< HEAD
       { description: 'Buy new dishes', isCompleted: false }
     ],
     newTodoDescription: ''
+=======
+      { description: 'Buy new dishes', isCompleted: false },
+      { description: 'Buy new dishes again', isCompleted: false }
+    ]
+>>>>>>> assignment-8-events
   };
+  this.deleteTodo = this.deleteTodo.bind(this)
+}
+
+deleteTodo(todoIndex) {
+  const todos = this.state.todos.filter((todo, index) => index !== todoIndex);
+
+  this.setState({
+    todos,
+  })
 }
 
 handleChange(e) {
@@ -37,9 +52,25 @@ render(){
   return (
     <div className="App">
      <ul>
+<<<<<<< HEAD
      { this.state.todos.map( (todo, index) =>
              <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } />
               )}
+=======
+     {
+       this.state.todos.map((todo, index) => {
+         return (
+           <ToDo
+             key={ index }
+             description={ todo.description }
+             isCompleted={ todo.isCompleted }
+             deleteTodo={this.deleteTodo}
+             index={index}
+           />
+         )
+       })
+     }
+>>>>>>> assignment-8-events
      </ul>
         <form onSubmit={ (e) => this.handleSubmit(e) }>
            <input type="text" value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
